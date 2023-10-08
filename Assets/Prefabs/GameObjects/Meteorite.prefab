@@ -12,10 +12,10 @@ GameObject:
   - component: {fileID: 144633143582864181}
   - component: {fileID: 6059738546749394072}
   - component: {fileID: 4181799047452145916}
-  - component: {fileID: 5322075656104612787}
+  - component: {fileID: 536325246454311122}
   m_Layer: 0
   m_Name: Meteorite
-  m_TagString: Untagged
+  m_TagString: Meteorite
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -124,7 +124,7 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.5
---- !u!114 &5322075656104612787
+--- !u!114 &536325246454311122
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -133,9 +133,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 4234622166664698986}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c558982de6d0e674ea38d8add016d1ad, type: 3}
+  m_Script: {fileID: 11500000, guid: c806ecf1ab53db04b83bafde9a973c37, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MoveSpeed: 0.5
+  MoveSpeed: 1
   LifeTime: 10
   EffectPrefab: {fileID: 0}

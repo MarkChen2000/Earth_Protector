@@ -2,16 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum ProjectileType
+public class MeteoriteController : MonoBehaviour
 {
-    Player, Enemy
-}
-
-public class ProjectileController : MonoBehaviour
-{
-
-    [SerializeField] ProjectileType ProjectileType = ProjectileType.Player;
-
+    public int HitPoint = 1;
     public float MoveSpeed = 10f;
     [SerializeField] float LifeTime = 3f;
 
@@ -27,13 +20,19 @@ public class ProjectileController : MonoBehaviour
         transform.Translate(Vector3.up* MoveSpeed,Space.Self);
     }
 
+    public void HitbyBullet(int costHitPoint)
+    {
+        if (HitPoint - costHitPoint <= 0)
+        {
+            GameManager.GameManagerSin.GainPoint(1);
+        }
+        else HitPoint -= costHitPoint;
+    }
+
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if ( ProjectileType == ProjectileType.Player ) {
-            if (collision.transform.tag == "Meteorite") {
-                collision.transform.GetComponent<MeteoriteController>().HitbyBullet(1);
-                return;
-            }
+        if ( collision.transform.tag == "Earth") {
+            GameManager.GameManagerSin.EarthDestroyed();
         }
 
         if (EffectPrefab != null) Instantiate(EffectPrefab, transform.position, Quaternion.identity);

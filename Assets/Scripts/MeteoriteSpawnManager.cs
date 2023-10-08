@@ -19,7 +19,7 @@ public class MeteoriteSpawnManager : MonoBehaviour
 
     void Start()
     {
-        StartCoroutine(StartSpawningMeteorites());
+        
     }
 
     // Update is called once per frame
@@ -30,7 +30,7 @@ public class MeteoriteSpawnManager : MonoBehaviour
         }
     }
     
-    IEnumerator StartSpawningMeteorites()
+    public IEnumerator StartSpawningMeteorites()
     {
         currentInterval = InitialInterval;
 
@@ -59,7 +59,7 @@ public class MeteoriteSpawnManager : MonoBehaviour
         float rotateAngle = Mathf.Atan2(targetVector.y,targetVector.x) * Mathf.Rad2Deg; //計算出(1,0)前方向量到目標向量的弧度再乘Rad2Deg成為角度
         prefab.transform.rotation = Quaternion.Euler(new Vector3(0f, 0f,rotateAngle-90f)); //再以該角度以z為軸旋轉 -90是因為是想以y軸(0,1)面相目標 所以少轉90度
 
-        prefab.GetComponent<ProjectileController>().MoveSpeed = MeteoriteSpeed;
+        prefab.GetComponent<MeteoriteController>().MoveSpeed = MeteoriteSpeed;
     }
 
     private void OnDrawGizmos()
