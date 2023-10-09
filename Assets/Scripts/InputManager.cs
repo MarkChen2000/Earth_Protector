@@ -2,20 +2,29 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class InputController : MonoBehaviour
+public class InputManager : MonoBehaviour
 {
 
+    [HideInInspector] public static InputManager InputManagerSin;
     [SerializeField] TurretController _turretController;
+
+    public bool CanControl = false;
 
     [SerializeField] GameObject GunSightIcon;
 
     void Awake()
     {
-        
+        //Singleton
+        if (InputManagerSin != null && InputManagerSin != this) Destroy(this);
+        else InputManagerSin = this;
     }
 
     void Update()
     {
+        if (GunSightIcon != null) GunSightIcon.SetActive(false);
+
+        if (!CanControl) return;
+
         if ( Input.touchCount > 0 )
         {
             Touch touch = Input.GetTouch(0);
@@ -30,6 +39,5 @@ public class InputController : MonoBehaviour
             }
             Debug.Log("Touched "+position.x + " " + position.y);
         }
-        else if (GunSightIcon != null)  GunSightIcon.SetActive(false);
     }
 }

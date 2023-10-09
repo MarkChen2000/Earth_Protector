@@ -7,7 +7,7 @@ public class UIManager : MonoBehaviour
 {
     [HideInInspector] public static UIManager UIManagerSin;
 
-    [SerializeField] GameObject StartMenu;
+    [SerializeField] GameObject StartMenu, EndMenu;
     [SerializeField] TMP_Text TMPText_Score;
 
     void Awake()
@@ -20,6 +20,8 @@ public class UIManager : MonoBehaviour
     void Start()
     {
         SetupUI();
+
+        TimelineManager.TimelineManagerSin.PlayTimeline(TimelineManager.TimelineManagerSin.timelineClips.GameIntro);
     }
 
     // Update is called once per frame
@@ -33,9 +35,21 @@ public class UIManager : MonoBehaviour
         TMPText_Score.text = 0.ToString();
     }
 
-    public void DisableMenu()
+    public void DisableStartMenu()
     {
-        StartMenu.SetActive(false);
+        TimelineManager.TimelineManagerSin.PlayTimeline(TimelineManager.TimelineManagerSin.timelineClips.GameStart);
+        //StartMenu.SetActive(false);
+    }
+
+    public void EnableEndMenu()
+    {
+        TimelineManager.TimelineManagerSin.PlayTimeline(TimelineManager.TimelineManagerSin.timelineClips.GameOver);
+        //EndMenu.SetActive(true);
+    }
+
+    public void ReturnToStart()
+    {
+        TimelineManager.TimelineManagerSin.PlayTimeline(TimelineManager.TimelineManagerSin.timelineClips.Return);
     }
 
     public void UpdateUI(int score)

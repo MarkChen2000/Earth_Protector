@@ -32,7 +32,7 @@ public class MeteoriteController : MonoBehaviour
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if ( collision.transform.tag == "Earth") {
-            GameManager.GameManagerSin.EarthDestroyed();
+            GameManager.GameManagerSin.GameOver();
         }
 
         if (EffectPrefab != null) Instantiate(EffectPrefab, transform.position, Quaternion.identity);

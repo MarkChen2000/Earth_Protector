@@ -7,6 +7,7 @@ public class TurretController : MonoBehaviour
     
     [SerializeField] float TurretRotationSpeed = 1f, GunFireRate = 0.5f;
 
+    [SerializeField] Transform BulletSpawnTrans;
     [SerializeField] GameObject Bullet_Prefab;
     [SerializeField] Transform Trans_GunSpot;
 
@@ -69,7 +70,7 @@ public class TurretController : MonoBehaviour
         if (Time.time < lastfiretimer + GunFireRate) return;
         lastfiretimer = Time.time;
 
-        Instantiate(Bullet_Prefab, Trans_GunSpot.position, Trans_GunSpot.rotation);
+        Instantiate(Bullet_Prefab, Trans_GunSpot.position, Trans_GunSpot.rotation, BulletSpawnTrans);
     }
 
 
