@@ -6,7 +6,7 @@ public class GameManager : MonoBehaviour
 {
     [HideInInspector] public static GameManager GameManagerSin;
     [SerializeField] MeteoriteSpawnManager meteoriteSpawnManager;
-    [SerializeField] Transform BulletSpawnTrans;
+    [SerializeField] Transform BulletSpawnTrans, MeteoriteSpawnTrans;
 
     [SerializeField] int Score =0/*, Money=0*/;
 
@@ -25,11 +25,11 @@ public class GameManager : MonoBehaviour
 
     Coroutine meteoriteSpawnCoroutine;
 
-    public void StarttheGame()
+    public void Button_StartGame()
     {
         InputManager.InputManagerSin.CanControl = true;
 
-        UIManager.UIManagerSin.DisableStartMenu();
+        UIManager.UIManagerSin.StartGame();
         meteoriteSpawnCoroutine = StartCoroutine( meteoriteSpawnManager.StartSpawningMeteorites() );
     }
 
@@ -44,17 +44,30 @@ public class GameManager : MonoBehaviour
         StopCoroutine(meteoriteSpawnCoroutine);
         InputManager.InputManagerSin.CanControl = false;
 
-        for (int i = 0; i < BulletSpawnTrans.childCount; i++) {
-            Destroy( BulletSpawnTrans.GetChild(0).gameObject );
-        }
+        ClearBullets();
 
-        UIManager.UIManagerSin.EnableEndMenu();
+        UIManager.UIManagerSin.GameOver();
         Debug.Log("Earth Destroyed! Game Over");
     }
 
-    public void RestartGame()
+    void ClearBullets()
     {
-        UIManager.UIManagerSin.ReturnToStart();
+        for (int i = 0; i < BulletSpawnTrans.childCount; i++) {
+            Destroy(BulletSpawnTrans.GetChild(0).gameObject);
+        }
+    }
+
+    public void Signal_ClearMeteorite()
+    {
+        for (int i = 0; i < MeteoriteSpawnTrans.childCount; i++) {
+            Destroy(MeteoriteSpawnTrans.GetChild(0).gameObject);
+        }
+    }
+
+    public void Button_ResetGame()
+    {
+        UIManager.UIManagerSin.Reset();
+        UIManager.UIManagerSin.UpdateUI(0);
     }
 
     public void StoptheGame()
