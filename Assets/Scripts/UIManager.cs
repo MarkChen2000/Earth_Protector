@@ -48,6 +48,11 @@ public class UIManager : MonoBehaviour
         TimelineManager.TimelineManagerSin.PlayTimeline(TimelineManager.TimelineManagerSin.timelineClips.Reset);
     }
 
+    public void Signal_ResetUI()
+    {
+        UpdateUI(0);
+    }
+
     public void UpdateUI(int score)
     {
         Text_Score.text = score.ToString();

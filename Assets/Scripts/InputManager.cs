@@ -25,8 +25,7 @@ public class InputManager : MonoBehaviour
 
         if (!CanControl) return;
 
-        if ( Input.touchCount > 0 )
-        {
+        if ( Input.touchCount > 0 ) {
             Touch touch = Input.GetTouch(0);
 
             Vector2 position = Camera.main.ScreenToWorldPoint(touch.position);
@@ -38,6 +37,20 @@ public class InputManager : MonoBehaviour
                 GunSightIcon.transform.position = position;
             }
             Debug.Log("Touched "+position.x + " " + position.y);
+        }
+
+        if (Input.GetMouseButton(0)) {
+
+            Vector2 position = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            _turretController.TurretMove(position);
+            _turretController.GunFire();
+
+            if (GunSightIcon != null)
+            {
+                GunSightIcon.SetActive(true);
+                GunSightIcon.transform.position = position;
+            }
+            Debug.Log("Touched " + position.x + " " + position.y);
         }
     }
 }

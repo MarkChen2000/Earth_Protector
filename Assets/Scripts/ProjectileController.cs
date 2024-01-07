@@ -9,7 +9,7 @@ public enum ProjectileType
 
 public class ProjectileController : MonoBehaviour
 {
-
+    
     [SerializeField] ProjectileType ProjectileType = ProjectileType.Player;
 
     public float MoveSpeed = 10f;
@@ -27,17 +27,18 @@ public class ProjectileController : MonoBehaviour
         transform.Translate(Vector3.up* MoveSpeed,Space.Self);
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    void OnCollisionEnter2D(Collision2D collision)
     {
         if ( ProjectileType == ProjectileType.Player ) {
             if (collision.transform.tag == "Meteorite") {
                 collision.transform.GetComponent<MeteoriteController>().HitbyBullet(1);
-                return;
+
+                if (EffectPrefab != null) Instantiate(EffectPrefab, transform.position, Quaternion.identity);
+                Destroy(gameObject);
             }
         }
 
-        if (EffectPrefab != null) Instantiate(EffectPrefab, transform.position, Quaternion.identity);
-        Destroy(gameObject);
+
     }
 
 }

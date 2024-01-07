@@ -7,6 +7,7 @@ TagManager:
   - Earth
   - Bullet
   - Meteorite
+  - Barrier
   layers:
   - Default
   - TransparentFX

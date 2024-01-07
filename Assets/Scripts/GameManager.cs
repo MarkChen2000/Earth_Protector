@@ -59,6 +59,7 @@ public class GameManager : MonoBehaviour
 
     public void Signal_ClearMeteorite()
     {
+
         for (int i = 0; i < MeteoriteSpawnTrans.childCount; i++) {
             Destroy(MeteoriteSpawnTrans.GetChild(0).gameObject);
         }
@@ -67,7 +68,6 @@ public class GameManager : MonoBehaviour
     public void Button_ResetGame()
     {
         UIManager.UIManagerSin.Reset();
-        UIManager.UIManagerSin.UpdateUI(0);
     }
 
     public void StoptheGame()
