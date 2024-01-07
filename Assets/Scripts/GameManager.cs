@@ -41,7 +41,6 @@ public class GameManager : MonoBehaviour
 
     public void GameOver()
     {
-        StopCoroutine(meteoriteSpawnCoroutine);
         InputManager.InputManagerSin.CanControl = false;
 
         ClearBullets();
@@ -59,7 +58,8 @@ public class GameManager : MonoBehaviour
 
     public void Signal_ClearMeteorite()
     {
-
+        Debug.Log("Clear Meteor!");
+        StopCoroutine(meteoriteSpawnCoroutine);
         for (int i = 0; i < MeteoriteSpawnTrans.childCount; i++) {
             Destroy(MeteoriteSpawnTrans.GetChild(0).gameObject);
         }

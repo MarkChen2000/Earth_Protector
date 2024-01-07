@@ -4,11 +4,12 @@ using UnityEngine;
 
 public class MeteoriteController : MonoBehaviour
 {
-    Transform Earth;
+
+    Transform EarthTrans;
     [SerializeField] float EarthMass = 1f;
 
-    public float Mass = 0.01f, Force = 1f;
-    public int HitPoint = 1;
+    [SerializeField] float Mass = 0.01f, Force = 1f, AngularVelocity = 130f;
+    [SerializeField] int HitPoint = 1;
 
     [SerializeField] float LifeTime = 5f;
 
@@ -21,32 +22,47 @@ public class MeteoriteController : MonoBehaviour
         Destroy(gameObject, LifeTime);
         _rigidbody2D = GetComponent<Rigidbody2D>();
         _rigidbody2D.mass = Mass;
-
-        Earth = GameObject.Find("Earth").transform;
     }
 
     float pullForce;
     void Update()
     {
-        pullForce = 9.8f * Mass * EarthMass / Mathf.Pow(Vector2.Distance(transform.position, new Vector2(0f, 0f)), 2);
-        Vector2 vectorFaceToEarth = -transform.position.normalized;
-        _rigidbody2D.AddForce(vectorFaceToEarth * pullForce);
+        GravityEffect();
     }
 
-    public void SetStats()
+    void FixedUpdate()
     {
+        _rigidbody2D.angularVelocity = AngularVelocity;
+    }
+
+    public void SetDefaultStats()
+    {
+        EarthTrans = GameObject.Find("Earth").transform;
         _rigidbody2D.AddRelativeForce(transform.up.normalized * Force);
         //Debug.Log(transform.up.normalized * Force);
     }
 
-    public void SetStats(float force, float mass, int hitPoint)
+    public void SetStats(Transform earthTrans, float earthMass, float force, float mass, int hitPoint)
     {
-        if (force != Force) Force = force;
-        if (mass!=Mass) Mass = mass;
-        if (HitPoint != hitPoint) HitPoint = hitPoint;
+        EarthTrans = earthTrans;
+        EarthMass = earthMass;
+        Force = force;
+        Mass = mass;
+        HitPoint = hitPoint;
+
+        AngularVelocity = Random.Range(60f, 180f);
 
         _rigidbody2D.AddRelativeForce( transform.up.normalized * Force);
         //Debug.Log(transform.up.normalized * Force);
+    }
+
+    void GravityEffect()
+    {
+        if (EarthTrans == null) return;
+
+        pullForce = 9.8f * Mass * EarthMass / Mathf.Pow(Vector2.Distance(transform.position, EarthTrans.position), 2);
+        Vector2 vectorFaceToEarth = EarthTrans.position-transform.position.normalized;
+        _rigidbody2D.AddForce(vectorFaceToEarth * pullForce);
     }
 
     public void HitbyBullet(int costHitPoint)

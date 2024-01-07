@@ -6,17 +6,22 @@ using UnityEngine;
 public class MeteoriteSpawnManager : MonoBehaviour
 {
 
-    [SerializeField] float SpawnCircleRadius = 10f, MeteoriteSpeed = 0.5f;
+    [SerializeField] float SpawnCircleRadius = 10f;
 
     [SerializeField] float MaxSpawnInterval = 5f, MinSpawnInterval = 0.5f, IntervalDecreaseRate = 0.5f, TimeToDecreaseInterval = 5f, IncreaseTimepPerTurn = 2f;
+    float currentSpawnInterval, currentMaxSpawnInterval;
     [SerializeField] AnimationCurve RandomOfIntervalCurve;
     [SerializeField] int MinSpawnAmount = 1, MaxSpawnAmount = 3;
     [SerializeField] AnimationCurve RandomOfSpaweAmountCurve;
     [SerializeField] float RandomOffsetAngleRange = 180f;
     [SerializeField] AnimationCurve RandomAngleOffset;
-    float currentSpawnInterval, currentMaxSpawnInterval;
 
     [SerializeField] Transform MeteoriteSpawnTrans;
+
+    [SerializeField] Transform EarthTrans;
+    [SerializeField] float EarthMass = 150f, MeteorMass = 0.0001f, MeteorInitForce = 0.1f;
+    [SerializeField] int MeteorHitPoint = 1;
+
     [SerializeField] GameObject MeteoritePrefab;
 
     void Awake()
@@ -101,9 +106,10 @@ public class MeteoriteSpawnManager : MonoBehaviour
         float rotateAngle = Mathf.Atan2(targetVector.y,targetVector.x) * Mathf.Rad2Deg; //計算出(1,0)前方向量到目標向量的弧度再乘Rad2Deg成為角度
         prefab.transform.rotation = Quaternion.Euler(new Vector3(0f, 0f,rotateAngle-90f + randomAngleOffset )); //再以該角度以z為軸旋轉 -90是因為是想以y軸(0,1)面相目標 所以少轉90度
 
-        prefab.GetComponent<MeteoriteController>().SetStats();
+        //prefab.GetComponent<MeteoriteController>().SetDefaultStats();
+        prefab.GetComponent<MeteoriteController>().SetStats(EarthTrans, EarthMass, MeteorInitForce, MeteorMass, MeteorHitPoint);
 
-        Debug.Log("MeteoriteSpeed:" + MeteoriteSpeed + " SpawnPoint: " + randonSpawnPoint + " AngleOffset: " + randomAngleOffset);
+        Debug.Log(" SpawnPoint: " + randonSpawnPoint + " AngleOffset: " + randomAngleOffset);
     }
 
     private void OnDrawGizmos()
