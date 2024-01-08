@@ -9,6 +9,9 @@ public class TurretController : MonoBehaviour
     {
         Immediately, Speed
     }
+
+    [SerializeField] Animator Animator;
+
     [SerializeField] TurretTurnMode TurnMode = TurretTurnMode.Speed;
 
     [SerializeField] float TurretRotationSpeed = 1f, GunFireRate = 0.5f;
@@ -20,6 +23,11 @@ public class TurretController : MonoBehaviour
     void Awake()
     {
         
+    }
+
+    void Start()
+    {
+        Animator.speed = 1 / GunFireRate;
     }
 
     [SerializeField] bool UseButton = true;
@@ -57,8 +65,7 @@ public class TurretController : MonoBehaviour
     {
         Vector2 dir = (targetpos - Vector2.zero).normalized;
 
-        switch ( TurnMode )
-        {
+        switch ( TurnMode ) {
             case TurretTurnMode.Immediately:
                 // method1: after calculate the angle, rotate turret immediately.
                 float rotateAngle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg; //計算出前方向量(1,0)到目標向量的弧度再乘Rad2Deg成為角度
@@ -84,6 +91,8 @@ public class TurretController : MonoBehaviour
         lastfiretimer = Time.time;
 
         Instantiate(Bullet_Prefab, Trans_GunSpot.position, Trans_GunSpot.rotation, BulletSpawnTrans);
+
+        Animator.SetTrigger("Fire");
     }
 
 

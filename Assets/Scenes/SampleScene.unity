@@ -2683,12 +2683,12 @@ MonoBehaviour:
     - serializedVersion: 3
       time: 0.500638
       value: 0.500957
-      inSlope: -1.2654284
-      outSlope: -1.2654284
+      inSlope: -5.093472
+      outSlope: -5.093472
       tangentMode: 0
       weightedMode: 0
       inWeight: 1
-      outWeight: 0.19215092
+      outWeight: 0.047864836
     - serializedVersion: 3
       time: 1
       value: 1
@@ -2707,7 +2707,12 @@ MonoBehaviour:
   MeteorMass: 0.0001
   MeteorInitForce: 0.1
   MeteorHitPoint: 1
-  MeteoritePrefab: {fileID: 4234622166664698986, guid: 9337cd0f033536942815dc1afe7b3c5f, type: 3}
+  GravityType: 0
+  MeteoritePrefabs:
+  - {fileID: 4234622166664698986, guid: 9337cd0f033536942815dc1afe7b3c5f, type: 3}
+  - {fileID: 4234622166664698986, guid: a44c950bca968de49bc815f345a0770e, type: 3}
+  - {fileID: 4234622166664698986, guid: fbd5a2c3467af4a448e29869576b847d, type: 3}
+  - {fileID: 4234622166664698986, guid: 4385edebdee2e3942ba1411f2755fefd, type: 3}
 --- !u!4 &1375486052
 Transform:
   m_ObjectHideFlags: 0
@@ -3230,6 +3235,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1920374229}
   - component: {fileID: 1920374228}
+  - component: {fileID: 1920374230}
   m_Layer: 0
   m_Name: Graphx_Turret
   m_TagString: Untagged
@@ -3305,6 +3311,27 @@ Transform:
   m_Father: {fileID: 1991898662}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!95 &1920374230
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1920374227}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 2c8c6b438165bc3468baeb93f922e819, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &1920702410
 GameObject:
   m_ObjectHideFlags: 0
@@ -3468,6 +3495,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8c200d2adee40e54dbccf21c35b8eab7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Animator: {fileID: 1920374230}
   TurnMode: 0
   TurretRotationSpeed: 3
   GunFireRate: 0.5

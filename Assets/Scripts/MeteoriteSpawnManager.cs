@@ -21,8 +21,9 @@ public class MeteoriteSpawnManager : MonoBehaviour
     [SerializeField] Transform EarthTrans;
     [SerializeField] float EarthMass = 150f, MeteorMass = 0.0001f, MeteorInitForce = 0.1f;
     [SerializeField] int MeteorHitPoint = 1;
+    [SerializeField] GravityEffectType GravityType = GravityEffectType.Physics;
 
-    [SerializeField] GameObject MeteoritePrefab;
+    [SerializeField] List<GameObject> MeteoritePrefabs = new List<GameObject>();
 
     void Awake()
     {
@@ -95,9 +96,11 @@ public class MeteoriteSpawnManager : MonoBehaviour
         Vector2 randonSpawnPoint = new Vector2();
         randonSpawnPoint.x = Mathf.Cos(randonAngle) * SpawnCircleRadius; //sin@ = 斜邊/底邊 底邊為半徑 sin@*半徑即成為斜邊，即是x座標
         randonSpawnPoint.y = Mathf.Sin(randonAngle) * SpawnCircleRadius; //cos@ = 鄰邊/底邊
+
         
+
         Vector2 targetVector = -randonSpawnPoint.normalized; //朝向中心的方向
-        GameObject prefab = Instantiate(MeteoritePrefab, randonSpawnPoint, Quaternion.identity, MeteoriteSpawnTrans);
+        GameObject prefab = Instantiate(MeteoritePrefabs[Mathf.RoundToInt(Random.Range(0,3))], randonSpawnPoint, Quaternion.identity, MeteoriteSpawnTrans);
 
         float minOffset = -RandomOffsetAngleRange / 2;
         float maxOffset = RandomOffsetAngleRange / 2;
@@ -107,7 +110,7 @@ public class MeteoriteSpawnManager : MonoBehaviour
         prefab.transform.rotation = Quaternion.Euler(new Vector3(0f, 0f,rotateAngle-90f + randomAngleOffset )); //再以該角度以z為軸旋轉 -90是因為是想以y軸(0,1)面相目標 所以少轉90度
 
         //prefab.GetComponent<MeteoriteController>().SetDefaultStats();
-        prefab.GetComponent<MeteoriteController>().SetStats(EarthTrans, EarthMass, MeteorInitForce, MeteorMass, MeteorHitPoint);
+        prefab.GetComponent<MeteoriteController>().SetStats(GravityType, EarthTrans, EarthMass, MeteorInitForce, MeteorMass, MeteorHitPoint);
 
         Debug.Log(" SpawnPoint: " + randonSpawnPoint + " AngleOffset: " + randomAngleOffset);
     }
