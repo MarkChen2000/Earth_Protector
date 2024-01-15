@@ -15,7 +15,7 @@ TagManager:
   - 
   - Water
   - UI
-  - 
+  - Pixelate Filter
   - 
   - 
   - 
@@ -50,4 +50,7 @@ TagManager:
     locked: 0
   - name: UI
     uniqueID: 1644642211
+    locked: 0
+  - name: PixelateFliter
+    uniqueID: 2814102981
     locked: 0

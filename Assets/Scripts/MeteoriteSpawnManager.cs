@@ -68,7 +68,9 @@ public class MeteoriteSpawnManager : MonoBehaviour
                 // Spawn in random amount
                 // 將曲線作為隨機值的加權，可以將機率視覺化
                 int amount = Mathf.RoundToInt( Mathf.Lerp(MinSpawnAmount, MaxSpawnAmount, RandomOfSpaweAmountCurve.Evaluate(Random.value)));
-                Debug.Log("interval: " + currentSpawnInterval+", timer: "+ (Time.time-startTime)+" amount: "+amount);
+                
+                //Debug.Log("interval: " + currentSpawnInterval+", timer: "+ (Time.time-startTime)+" amount: "+amount);
+                
                 for (int i = 0; i < amount ; i++) {
                     RandomSpawnFromCircleEdge();
                 }
@@ -83,7 +85,7 @@ public class MeteoriteSpawnManager : MonoBehaviour
 
                 currentMaxSpawnInterval -= IntervalDecreaseRate;
 
-                Debug.Log("Update MaxInterval:" + currentMaxSpawnInterval+" Increase count:"+ decreaseCounter);
+                //Debug.Log("Update MaxInterval:" + currentMaxSpawnInterval+" Increase count:"+ decreaseCounter);
             }
 
             yield return new WaitForEndOfFrame();
@@ -100,7 +102,7 @@ public class MeteoriteSpawnManager : MonoBehaviour
         
 
         Vector2 targetVector = -randonSpawnPoint.normalized; //朝向中心的方向
-        GameObject prefab = Instantiate(MeteoritePrefabs[Mathf.RoundToInt(Random.Range(0,3))], randonSpawnPoint, Quaternion.identity, MeteoriteSpawnTrans);
+        GameObject prefab = Instantiate(MeteoritePrefabs[Mathf.RoundToInt(Random.Range(0,3))], randonSpawnPoint, Quaternion.identity, MeteoriteSpawnTrans); // 隨機生成不同的隕石
 
         float minOffset = -RandomOffsetAngleRange / 2;
         float maxOffset = RandomOffsetAngleRange / 2;
@@ -112,7 +114,7 @@ public class MeteoriteSpawnManager : MonoBehaviour
         //prefab.GetComponent<MeteoriteController>().SetDefaultStats();
         prefab.GetComponent<MeteoriteController>().SetStats(GravityType, EarthTrans, EarthMass, MeteorInitForce, MeteorMass, MeteorHitPoint);
 
-        Debug.Log(" SpawnPoint: " + randonSpawnPoint + " AngleOffset: " + randomAngleOffset);
+        //Debug.Log(" SpawnPoint: " + randonSpawnPoint + " AngleOffset: " + randomAngleOffset);
     }
 
     private void OnDrawGizmos()

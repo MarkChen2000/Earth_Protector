@@ -28,6 +28,8 @@ public class InputManager : MonoBehaviour
         if ( Input.touchCount > 0 ) {
             Touch touch = Input.GetTouch(0);
 
+            //Debug.Log("Touched point in screen space: " + touch.position.x + " " + touch.position.y);
+
             Vector2 position = Camera.main.ScreenToWorldPoint(touch.position);
             _turretController.TurretMove(position);
             _turretController.GunFire();
@@ -36,10 +38,14 @@ public class InputManager : MonoBehaviour
                 GunSightIcon.SetActive(true);
                 GunSightIcon.transform.position = position;
             }
-            Debug.Log("Touched "+position.x + " " + position.y);
+            //Debug.Log("Touched point in world space: "+position.x + " " + position.y);
+
+
         }
 
         if (Input.GetMouseButton(0)) {
+
+            //Debug.Log("Mouse point in screen space: " + Input.mousePosition.x + " " + Input.mousePosition.y);
 
             Vector2 position = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             _turretController.TurretMove(position);
@@ -50,7 +56,8 @@ public class InputManager : MonoBehaviour
                 GunSightIcon.SetActive(true);
                 GunSightIcon.transform.position = position;
             }
-            Debug.Log("Touched " + position.x + " " + position.y);
+
+            //Debug.Log("Mouse point in world space: " + position.x + " " + position.y);
         }
     }
 }

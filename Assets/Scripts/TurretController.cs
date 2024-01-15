@@ -17,7 +17,7 @@ public class TurretController : MonoBehaviour
     [SerializeField] float TurretRotationSpeed = 1f, GunFireRate = 0.5f;
 
     [SerializeField] Transform BulletSpawnTrans;
-    [SerializeField] GameObject Bullet_Prefab;
+    [SerializeField] GameObject Bullet_Prefab, ShootingEffect_Prefab;
     [SerializeField] Transform Trans_GunSpot;
 
     void Awake()
@@ -91,6 +91,7 @@ public class TurretController : MonoBehaviour
         lastfiretimer = Time.time;
 
         Instantiate(Bullet_Prefab, Trans_GunSpot.position, Trans_GunSpot.rotation, BulletSpawnTrans);
+        Instantiate(ShootingEffect_Prefab, Trans_GunSpot.position, Trans_GunSpot.rotation);
 
         Animator.SetTrigger("Fire");
     }

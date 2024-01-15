@@ -74,7 +74,7 @@ public class MeteoriteController : MonoBehaviour
         switch ( GravityType ) {
             case GravityEffectType.Physics:
                 pullForce = 9.8f * Mass * EarthMass / Mathf.Pow( distanceToEarth, 2);
-                Debug.Log("Pull force from earth is: " + pullForce);
+                //Debug.Log("Pull force from earth is: " + pullForce);
 
                 break;
             case GravityEffectType.Simplified:
