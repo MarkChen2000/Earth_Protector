@@ -52,17 +52,17 @@ public class GameManager : MonoBehaviour
     void ClearBullets()
     {
         for (int i = 0; i < BulletSpawnTrans.childCount; i++) {
-            Destroy(BulletSpawnTrans.GetChild(0).gameObject);
+            BulletSpawnTrans.GetChild(i).gameObject.SetActive(false);
         }
     }
 
     public void Signal_ClearMeteorite()
     {
-        Debug.Log("Clear Meteor!");
         StopCoroutine(meteoriteSpawnCoroutine);
         for (int i = 0; i < MeteoriteSpawnTrans.childCount; i++) {
-            Destroy(MeteoriteSpawnTrans.GetChild(0).gameObject);
+            MeteoriteSpawnTrans.GetChild(i).gameObject.SetActive(false);
         }
+        Debug.Log("Clear Meteor!");
     }
 
     public void Button_ResetGame()

@@ -69,13 +69,18 @@ public class MeteoriteSpawnManager : MonoBehaviour
                 // 將曲線作為隨機值的加權，可以將機率視覺化
                 int amount = Mathf.RoundToInt( Mathf.Lerp(MinSpawnAmount, MaxSpawnAmount, RandomOfSpaweAmountCurve.Evaluate(Random.value)));
                 
-                //Debug.Log("interval: " + currentSpawnInterval+", timer: "+ (Time.time-startTime)+" amount: "+amount);
-                
-                for (int i = 0; i < amount ; i++) {
-                    RandomSpawnFromCircleEdge();
-                }
-
                 currentSpawnInterval = Mathf.Lerp(MinSpawnInterval, currentMaxSpawnInterval, RandomOfIntervalCurve.Evaluate(Random.value) ); //以最大值與最小值做中間插值，讓曲線0~1的結果呈現
+                
+                Debug.Log("interval: " + currentSpawnInterval+", timer: "+ (Time.time-startTime)+" amount: "+amount);
+
+                // 如果每次生成超過一顆 便分散平均在當次間隔時間內發射
+                if ( amount > 1 ) {
+                    for (int i = 0; i < amount ; i++) {
+                        RandomSpawnFromCircleEdge();
+                        yield return new WaitForSeconds(currentSpawnInterval/2);
+                    }
+                }
+                else RandomSpawnFromCircleEdge();
             }
 
             // decrease maxinterval 
@@ -88,7 +93,7 @@ public class MeteoriteSpawnManager : MonoBehaviour
                 //Debug.Log("Update MaxInterval:" + currentMaxSpawnInterval+" Increase count:"+ decreaseCounter);
             }
 
-            yield return new WaitForEndOfFrame();
+            yield return null; //wait one frame.
         }
     }
 
