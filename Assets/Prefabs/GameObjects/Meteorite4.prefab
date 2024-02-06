@@ -138,13 +138,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   GravityType: 1
-  SimplifiedPullForce: 0.001
+  SimplifiedEarthPullForce: 0.001
+  EarthTrans: {fileID: 0}
   EarthMass: 150
-  Mass: 0.0001
-  Force: 0.1
-  AngularVelocity: 130
+  Mass: 0.001
+  InitialForce: 1
+  AngularVelocity: 80
   HitPoint: 1
-  LifeTime: 10
+  LifeTime: 20
   EffectPrefab: {fileID: 0}
 --- !u!96 &8361155612559975003
 TrailRenderer:

@@ -8,7 +8,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] MeteoriteSpawnManager meteoriteSpawnManager;
     [SerializeField] Transform BulletSpawnTrans, MeteoriteSpawnTrans;
 
-    [SerializeField] int Score =0/*, Money=0*/;
+    [SerializeField] int Score = 0, BestScore = 0/*, Money=0*/;
 
     void Awake()
     {
@@ -36,7 +36,7 @@ public class GameManager : MonoBehaviour
     public void GainPoint(int gain)
     {
         Score += gain;
-        UIManager.UIManagerSin.UpdateUI(Score);
+        UIManager.UIManagerSin.UpdateUI(Score,BestScore);
     }
 
     public void GameOver()
@@ -45,7 +45,10 @@ public class GameManager : MonoBehaviour
 
         ClearBullets();
 
+        if (Score > BestScore) BestScore = Score;
+
         UIManager.UIManagerSin.GameOver();
+        UIManager.UIManagerSin.UpdateUI(Score, BestScore);
         Debug.Log("Earth Destroyed! Game Over");
     }
 
@@ -67,6 +70,7 @@ public class GameManager : MonoBehaviour
 
     public void Button_ResetGame()
     {
+        Score = 0;
         UIManager.UIManagerSin.Reset();
     }
 

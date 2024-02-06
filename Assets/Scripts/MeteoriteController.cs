@@ -9,13 +9,15 @@ public enum GravityEffectType
 
 public class MeteoriteController : MonoBehaviour
 {
-    [SerializeField] GravityEffectType GravityType = GravityEffectType.Simplified;
-    [SerializeField] float SimplifiedPullForce = 0.001f;
+    //why they are public are mean the stats should controll by manager but not themselves.
+    [HideInInspector] public GravityEffectType GravityType = GravityEffectType.Simplified;
+    [HideInInspector] public float SimplifiedEarthPullForce = 0.001f;
 
-    Transform EarthTrans;
-    [SerializeField] float EarthMass = 150f;
+    [HideInInspector] public Transform EarthTrans;
+    [HideInInspector] public float EarthMass = 150f;
 
-    [SerializeField] float Mass = 0.0001f, Force = 0.1f, AngularVelocity = 130f;
+    [SerializeField] float Mass = 0.0001f;
+    [SerializeField] float InitialForce = 0.1f, AngularVelocity = 130f;
     [SerializeField] int HitPoint = 1;
 
     [SerializeField] float LifeTime = 5f;
@@ -44,26 +46,25 @@ public class MeteoriteController : MonoBehaviour
     public void SetDefaultStats()
     {
         EarthTrans = GameObject.Find("Earth").transform;
-        _rigidbody2D.AddRelativeForce(transform.up.normalized * Force);
+        _rigidbody2D.AddRelativeForce(transform.up.normalized * InitialForce);
         //Debug.Log(transform.up.normalized * Force);
     }
 
-    public void SetStats(GravityEffectType gravityType, Transform earthTrans, float earthMass, float force, float mass, int hitPoint)
+    public void SetStats(GravityEffectType gravityType,float pullForce, Transform earthTrans, float earthMass, float initialForceMultiplier)
     {
         GravityType = gravityType;
+        SimplifiedEarthPullForce = pullForce;
         EarthTrans = earthTrans;
         EarthMass = earthMass;
-        Force = force;
-        Mass = mass;
-        HitPoint = hitPoint;
+        InitialForce *= initialForceMultiplier;
 
-        AngularVelocity = Random.Range(100f, 200f);
+        AngularVelocity = Random.Range(80f, 250f);
 
-        _rigidbody2D.AddRelativeForce( transform.up.normalized * Force );
+        _rigidbody2D.AddRelativeForce( transform.up.normalized * InitialForce);
         //Debug.Log(transform.up.normalized * Force);
     }
 
-    float pullForce;
+    float currentPullForce;
     void GravityEffect()
     {
         if (!EarthTrans.gameObject.activeSelf) return;
@@ -73,16 +74,16 @@ public class MeteoriteController : MonoBehaviour
 
         switch ( GravityType ) {
             case GravityEffectType.Physics:
-                pullForce = 9.8f * Mass * EarthMass / Mathf.Pow( distanceToEarth, 2);
+                currentPullForce = 9.8f * Mass * EarthMass / Mathf.Pow( distanceToEarth, 2);
                 //Debug.Log("Pull force from earth is: " + pullForce);
 
                 break;
             case GravityEffectType.Simplified:
-                pullForce = SimplifiedPullForce;
+                currentPullForce = SimplifiedEarthPullForce;
 
                 break;
         }
-        _rigidbody2D.AddForce(vectorFaceToEarth * pullForce);
+        _rigidbody2D.AddForce(vectorFaceToEarth * currentPullForce);
 
     }
 

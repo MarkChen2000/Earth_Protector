@@ -18,10 +18,10 @@ public class MeteoriteSpawnManager : MonoBehaviour
 
     [SerializeField] Transform MeteoriteSpawnTrans;
 
-    [SerializeField] Transform EarthTrans;
-    [SerializeField] float EarthMass = 150f, MeteorMass = 0.0001f, MeteorInitForce = 0.1f;
-    [SerializeField] int MeteorHitPoint = 1;
     [SerializeField] GravityEffectType GravityType = GravityEffectType.Physics;
+    [SerializeField] float SimplifiedEarthPullForce = 0.001f;
+    [SerializeField] Transform EarthTrans;
+    [SerializeField] float EarthMass = 150f, initialForceMultiplier = 1f;
 
     [SerializeField] List<GameObject> MeteoritePrefabs = new List<GameObject>();
 
@@ -104,10 +104,9 @@ public class MeteoriteSpawnManager : MonoBehaviour
         randonSpawnPoint.x = Mathf.Cos(randonAngle) * SpawnCircleRadius; //sin@ = 斜邊/底邊 底邊為半徑 sin@*半徑即成為斜邊，即是x座標
         randonSpawnPoint.y = Mathf.Sin(randonAngle) * SpawnCircleRadius; //cos@ = 鄰邊/底邊
 
-        
-
         Vector2 targetVector = -randonSpawnPoint.normalized; //朝向中心的方向
-        GameObject prefab = Instantiate(MeteoritePrefabs[Mathf.RoundToInt(Random.Range(0,3))], randonSpawnPoint, Quaternion.identity, MeteoriteSpawnTrans); // 隨機生成不同的隕石
+
+        GameObject prefab = Instantiate(MeteoritePrefabs[Random.Range(0,4)], randonSpawnPoint, Quaternion.identity, MeteoriteSpawnTrans); // 隨機生成不同的隕石 //Range取整數範圍包含最小值但不包含最大值
 
         float minOffset = -RandomOffsetAngleRange / 2;
         float maxOffset = RandomOffsetAngleRange / 2;
@@ -117,7 +116,7 @@ public class MeteoriteSpawnManager : MonoBehaviour
         prefab.transform.rotation = Quaternion.Euler(new Vector3(0f, 0f,rotateAngle-90f + randomAngleOffset )); //再以該角度以z為軸旋轉 -90是因為是想以y軸(0,1)面相目標 所以少轉90度
 
         //prefab.GetComponent<MeteoriteController>().SetDefaultStats();
-        prefab.GetComponent<MeteoriteController>().SetStats(GravityType, EarthTrans, EarthMass, MeteorInitForce, MeteorMass, MeteorHitPoint);
+        prefab.GetComponent<MeteoriteController>().SetStats(GravityType, SimplifiedEarthPullForce, EarthTrans, EarthMass, initialForceMultiplier);
 
         //Debug.Log(" SpawnPoint: " + randonSpawnPoint + " AngleOffset: " + randomAngleOffset);
     }
