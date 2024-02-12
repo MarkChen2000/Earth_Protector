@@ -94,6 +94,7 @@ public class TurretController : MonoBehaviour
         Instantiate(ShootingEffect_Prefab, Trans_GunSpot.position, Trans_GunSpot.rotation);
 
         Animator.SetTrigger("Fire");
+        CameraManager.CameraManagerSin.Shake(ShakeDataTType.Shoot_SingleGun);
     }
 
 

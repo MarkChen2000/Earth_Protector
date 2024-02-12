@@ -20,17 +20,19 @@ public class MeteoriteController : MonoBehaviour
     [SerializeField] float InitialForce = 0.1f, AngularVelocity = 130f;
     [SerializeField] int HitPoint = 1;
 
-    [SerializeField] float LifeTime = 5f;
+    //[SerializeField] float LifeTime = 5f;
 
     [SerializeField] GameObject EffectPrefab;
 
-    Rigidbody2D _rigidbody2D;
+    Rigidbody2D Rigidbody2D;
+    [SerializeField] TrailRenderer TrailRenderer;
 
     void Awake()
     {
-        Destroy(gameObject, LifeTime);
-        _rigidbody2D = GetComponent<Rigidbody2D>();
-        _rigidbody2D.mass = Mass;
+        //Destroy(gameObject, LifeTime);
+        Rigidbody2D = GetComponent<Rigidbody2D>();
+
+        Rigidbody2D.mass = Mass;
     }
 
     void Update()
@@ -40,13 +42,13 @@ public class MeteoriteController : MonoBehaviour
 
     void FixedUpdate()
     {
-        _rigidbody2D.angularVelocity = AngularVelocity;
+        Rigidbody2D.angularVelocity = AngularVelocity;
     }
 
     public void SetDefaultStats()
     {
         EarthTrans = GameObject.Find("Earth").transform;
-        _rigidbody2D.AddRelativeForce(transform.up.normalized * InitialForce);
+        Rigidbody2D.AddRelativeForce(transform.up.normalized * InitialForce);
         //Debug.Log(transform.up.normalized * Force);
     }
 
@@ -60,7 +62,7 @@ public class MeteoriteController : MonoBehaviour
 
         AngularVelocity = Random.Range(80f, 250f);
 
-        _rigidbody2D.AddRelativeForce( transform.up.normalized * InitialForce);
+        Rigidbody2D.AddRelativeForce( transform.up.normalized * InitialForce);
         //Debug.Log(transform.up.normalized * Force);
     }
 
@@ -83,7 +85,7 @@ public class MeteoriteController : MonoBehaviour
 
                 break;
         }
-        _rigidbody2D.AddForce(vectorFaceToEarth * currentPullForce);
+        Rigidbody2D.AddForce(vectorFaceToEarth * currentPullForce);
 
     }
 
@@ -112,6 +114,27 @@ public class MeteoriteController : MonoBehaviour
             Destroy(gameObject);
         }
 
+    }
+
+    /*public void GetDestroyed() // Because unparent trail creator in OnDestroy will make the trail creator not be cleaned when scene closes or changes. 
+    {
+        TrailRenderer.transform.parent = null;
+    }*/
+
+    bool isQutting = false;
+    void OnApplicationQuit()
+    {
+        isQutting = true;
+    }
+
+    void OnDestroy()
+    {
+        if (isQutting) return; // Because unparent trail creator in OnDestroy will make the trail creator not be cleaned when scene closes or changes. 
+
+        TrailRenderer.transform.parent = null;
+        TrailRenderer.autodestruct = true;
+        TrailRenderer = null;
+        
     }
 
 }

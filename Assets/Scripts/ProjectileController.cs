@@ -31,10 +31,11 @@ public class ProjectileController : MonoBehaviour
     {
         if ( ProjectileType == ProjectileType.Player ) {
             if (collision.transform.tag == "Meteorite") {
-                collision.transform.GetComponent<MeteoriteController>().HitbyBullet(1);
+                MeteoriteController mCon = collision.transform.GetComponent<MeteoriteController>();
+                mCon.HitbyBullet(1);
 
                 if (EffectPrefab != null) Instantiate(EffectPrefab, transform.position, Quaternion.identity);
-                Destroy(gameObject);
+                Destroy(mCon.transform);
             }
         }
 

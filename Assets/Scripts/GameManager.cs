@@ -15,7 +15,7 @@ public class GameManager : MonoBehaviour
         //Singleton
         if (GameManagerSin != null && GameManagerSin != this) Destroy(this);
         else GameManagerSin = this;
-     }
+    }
 
     // Start is called before the first frame update
     void Start()
@@ -50,6 +50,8 @@ public class GameManager : MonoBehaviour
         UIManager.UIManagerSin.GameOver();
         UIManager.UIManagerSin.UpdateUI(Score, BestScore);
         Debug.Log("Earth Destroyed! Game Over");
+
+        CameraManager.CameraManagerSin.Shake(ShakeDataTType.Hitted);
     }
 
     void ClearBullets()
