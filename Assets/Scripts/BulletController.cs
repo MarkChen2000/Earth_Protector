@@ -5,17 +5,31 @@ using UnityEngine;
 public class BulletController : MonoBehaviour
 {
 
-    [SerializeField] float MoveSpeed = 10f;
+    public float MoveSpeed = 10f;
     [SerializeField] float LifeTime = 3f;
+
+    [SerializeField] GameObject EffectPrefab;
 
     void Awake()
     {
-        Destroy(gameObject,LifeTime);
+        Destroy(gameObject, LifeTime);
     }
 
-    // Update is called once per frame
     void FixedUpdate()
     {
-        transform.Translate(transform.up*MoveSpeed);
+        transform.Translate(Vector3.up* MoveSpeed,Space.Self);
     }
+
+    void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.transform.tag == "Meteorite") {
+            MeteoriteController mCon = collision.transform.GetComponent<MeteoriteController>();
+            mCon.HitbyBullet(1);
+
+            if (EffectPrefab != null) Instantiate(EffectPrefab, transform.position, Quaternion.identity);
+
+            Destroy(gameObject);
+        }
+    }
+
 }
