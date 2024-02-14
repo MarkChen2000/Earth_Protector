@@ -14,7 +14,7 @@ public class BackGroundManager : MonoBehaviour
     void Awake()
     {
         BGStartPos = BGTrans.position;
-        repeatWidth = 128f;
+        repeatWidth = 128f; // the width of background in moving direction and devided by 2.
     }
 
     void Update()
