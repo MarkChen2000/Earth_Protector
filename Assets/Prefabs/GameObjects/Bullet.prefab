@@ -136,7 +136,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c558982de6d0e674ea38d8add016d1ad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ProjectileType: 0
   MoveSpeed: 1
   LifeTime: 3
-  EffectPrefab: {fileID: 0}
+  EffectPrefab: {fileID: 1967835574231978638, guid: e47a83322a8c214419d6df7fbd743175, type: 3}

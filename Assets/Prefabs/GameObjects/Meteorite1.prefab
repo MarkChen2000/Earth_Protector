@@ -145,7 +145,7 @@ MonoBehaviour:
   InitialForce: 0.1
   AngularVelocity: 180
   HitPoint: 1
-  EffectPrefab: {fileID: 0}
+  EffectPrefab: {fileID: 1967835574231978638, guid: 4770717a1fb78ae4fa29f7146e2fe190, type: 3}
   TrailRenderer: {fileID: 2808628318426444536}
 --- !u!1 &5521356368401608839
 GameObject:

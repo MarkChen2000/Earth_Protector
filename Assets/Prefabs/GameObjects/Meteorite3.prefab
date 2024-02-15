@@ -294,5 +294,5 @@ MonoBehaviour:
   InitialForce: 0.5
   AngularVelocity: 110
   HitPoint: 1
-  EffectPrefab: {fileID: 0}
+  EffectPrefab: {fileID: 1967835574231978638, guid: 4770717a1fb78ae4fa29f7146e2fe190, type: 3}
   TrailRenderer: {fileID: 4369815527445761653}
