@@ -33,6 +33,83 @@ public class GameManager : MonoBehaviour
         meteoriteSpawnCoroutine = StartCoroutine( meteoriteSpawnManager.StartSpawningMeteorites() );
     }
 
+    bool isSettingMenuEnable = false;
+    public void Button_Setting()
+    {
+        if (!isSettingMenuEnable) {
+            if (!TimelineManager.TimelineManagerSin.PlayTimeline(TimelineManager.TimelineManagerSin.timelineClips.InSetting)) return;
+            isSettingMenuEnable = true;
+        }
+        else {
+            Debug.Log("Warining! Setting menu was already be opened.");
+        }
+    }
+
+    public void Button_ResumeFromSetting()
+    {
+        if (isSettingMenuEnable) {
+            if (!TimelineManager.TimelineManagerSin.PlayTimeline(TimelineManager.TimelineManagerSin.timelineClips.OutSetting)) return;
+            isSettingMenuEnable = false;
+        }
+        else {
+            Debug.Log("Warining! Setting menu was not be opened.");
+        }
+    }
+
+    bool isPauseMenuEnable = false;
+    bool isGamePause = false;
+    public void Button_Pause()
+    {
+        if (!isPauseMenuEnable) {
+
+            InputManager.InputManagerSin.CanControl = false;
+            Time.timeScale = 0f;
+            isGamePause = true;
+
+            if (!TimelineManager.TimelineManagerSin.PlayTimeline(TimelineManager.TimelineManagerSin.timelineClips.InPause)) return;
+            isPauseMenuEnable = true;
+        }
+        else {
+            Debug.Log("Warining! Pause menu was already be opened.");
+        }
+    }
+
+    public void Button_ResumeFromPause()
+    {
+        if (isPauseMenuEnable) {
+
+            InputManager.InputManagerSin.CanControl = true;
+            Time.timeScale = 1f;
+            isGamePause = false;
+
+            if (!TimelineManager.TimelineManagerSin.PlayTimeline(TimelineManager.TimelineManagerSin.timelineClips.OutPause)) return;
+            isPauseMenuEnable = false;
+        }
+        else {
+            Debug.Log("Warining! Pause menu was not be opened.");
+        }
+    }
+    public void Button_ResetFromPause()
+    {
+        if (isGamePause) {
+            Time.timeScale = 1f;
+            isGamePause = false;
+        }
+        if ( isPauseMenuEnable ) {
+            isPauseMenuEnable = false;
+        }
+
+        TimelineManager.TimelineManagerSin.PlayTimeline(TimelineManager.TimelineManagerSin.timelineClips.ResetFromPause);
+        ResetGame();
+    }
+
+    public void Button_ResetFromEndMenu()
+    {
+        TimelineManager.TimelineManagerSin.PlayTimeline(TimelineManager.TimelineManagerSin.timelineClips.ResetFromEndMenu);
+        ResetGame();
+    }
+
+
     public void GainPoint(int gain)
     {
         Score += gain;
@@ -70,10 +147,9 @@ public class GameManager : MonoBehaviour
         Debug.Log("Clear Meteor!");
     }
 
-    public void Button_ResetGame()
+    void ResetGame()
     {
         Score = 0;
-        UIManager.UIManagerSin.Reset();
     }
 
     public void StoptheGame()

@@ -43,37 +43,6 @@ public class UIManager : MonoBehaviour
         //EndMenu.SetActive(true);
     }
 
-    bool isSettingMenuEnable = false;
-    public void Button_Setting()
-    {
-        if (!isSettingMenuEnable){
-            if (!TimelineManager.TimelineManagerSin.PlayTimeline(TimelineManager.TimelineManagerSin.timelineClips.InSetting)) return;
-            isSettingMenuEnable = true;
-        }
-        else{
-            if (!TimelineManager.TimelineManagerSin.PlayTimeline(TimelineManager.TimelineManagerSin.timelineClips.OutSetting)) return;
-            isSettingMenuEnable = false;
-        }
-    }
-
-    bool isPauseMenuEnable = false;
-    public void Button_Pause()
-    {
-        if ( !isPauseMenuEnable) {
-            if ( !TimelineManager.TimelineManagerSin.PlayTimeline(TimelineManager.TimelineManagerSin.timelineClips.InPause) ) return ;
-            isPauseMenuEnable = true;
-        } else {
-            if ( !TimelineManager.TimelineManagerSin.PlayTimeline(TimelineManager.TimelineManagerSin.timelineClips.OutPause) ) return ;
-            isPauseMenuEnable = false;
-        }
-    }
-
-
-    public void Reset()
-    {
-        TimelineManager.TimelineManagerSin.PlayTimeline(TimelineManager.TimelineManagerSin.timelineClips.Reset);
-    }
-
     public void Signal_ResetUI()
     {
         Text_Score.text = 0.ToString();
