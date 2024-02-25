@@ -41,10 +41,11 @@ public class InputManager : MonoBehaviour
             Touch touch = Input.GetTouch(0);
 
             if (touch.phase == TouchPhase.Ended) return;
+            // the end phase of touch will also count as touchcount, but in this case it will become a problem that it count as touch before pressed button. 
 
             if (EventSystem.current.IsPointerOverGameObject(Input.touches[0].fingerId)) return; //check touch,                                                                         
             //this conditional construct can not be placed be itself, or when the screen didnt be touched. it will have out-of-index error by the array.
-            // BE CAREFUL! leave the UI objects with "raycast target" enable will also make this be true.
+            // BE CAREFUL! BE CRAEFUL! BE CAREFUL! leave the UI objects with "raycast target" enable will also make this be true.
 
             //Debug.Log("Touched point in screen space: " + touch.position.x + " " + touch.position.y);
 
