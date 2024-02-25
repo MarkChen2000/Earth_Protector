@@ -8,7 +8,7 @@ public class UIManager : MonoBehaviour
     [HideInInspector] public static UIManager UIManagerSin;
 
     [SerializeField] GameObject StartMenu, EndMenu;
-    [SerializeField] TMP_Text Text_Score, Text_EndMenuScore, Text_EndMenuBsetScore;
+    [SerializeField] TMP_Text Text_Score, Text_EndMenuScore, Text_EndMenuBsetScore, Text_PauseMenuScore;
 
     void Awake()
     {
@@ -27,6 +27,8 @@ public class UIManager : MonoBehaviour
     void SetupUI()
     {
         Text_Score.text = 0.ToString();
+        Text_PauseMenuScore.text = 0.ToString();
+        Text_EndMenuScore.text = 0.ToString();
     }
 
     public void StartGame()
@@ -37,8 +39,6 @@ public class UIManager : MonoBehaviour
 
     public void GameOver()
     {
-        Text_EndMenuScore.text = Text_Score.text;
-
         TimelineManager.TimelineManagerSin.PlayTimeline(TimelineManager.TimelineManagerSin.timelineClips.GameOver);
         //EndMenu.SetActive(true);
     }
@@ -46,11 +46,15 @@ public class UIManager : MonoBehaviour
     public void Signal_ResetUI()
     {
         Text_Score.text = 0.ToString();
+        Text_PauseMenuScore.text = 0.ToString();
+        Text_EndMenuScore.text = 0.ToString();
     }
 
     public void UpdateUI(int score, int bestScore)
     {
         Text_Score.text = score.ToString();
+        Text_PauseMenuScore.text = score.ToString();
+        Text_EndMenuScore.text = score.ToString();
         Text_EndMenuBsetScore.text = bestScore.ToString();
     }
 }

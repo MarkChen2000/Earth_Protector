@@ -62,11 +62,12 @@ public class GameManager : MonoBehaviour
     {
         if (!isPauseMenuEnable) {
 
+            if (!TimelineManager.TimelineManagerSin.PlayTimeline(TimelineManager.TimelineManagerSin.timelineClips.InPause)) return;
+
             InputManager.InputManagerSin.CanControl = false;
             Time.timeScale = 0f;
             isGamePause = true;
 
-            if (!TimelineManager.TimelineManagerSin.PlayTimeline(TimelineManager.TimelineManagerSin.timelineClips.InPause)) return;
             isPauseMenuEnable = true;
         }
         else {
@@ -77,35 +78,40 @@ public class GameManager : MonoBehaviour
     public void Button_ResumeFromPause()
     {
         if (isPauseMenuEnable) {
+            
+            if (!TimelineManager.TimelineManagerSin.PlayTimeline(TimelineManager.TimelineManagerSin.timelineClips.OutPause)) return;
 
             InputManager.InputManagerSin.CanControl = true;
             Time.timeScale = 1f;
             isGamePause = false;
 
-            if (!TimelineManager.TimelineManagerSin.PlayTimeline(TimelineManager.TimelineManagerSin.timelineClips.OutPause)) return;
             isPauseMenuEnable = false;
         }
         else {
             Debug.Log("Warining! Pause menu was not be opened.");
         }
     }
+
     public void Button_ResetFromPause()
+    {
+        if ( !TimelineManager.TimelineManagerSin.PlayTimeline(TimelineManager.TimelineManagerSin.timelineClips.ResetFromPause) ) return;
+        ResetGame();
+    }
+
+    public void Signal_ResumeTimeScale()
     {
         if (isGamePause) {
             Time.timeScale = 1f;
             isGamePause = false;
         }
-        if ( isPauseMenuEnable ) {
+        if (isPauseMenuEnable) {
             isPauseMenuEnable = false;
         }
-
-        TimelineManager.TimelineManagerSin.PlayTimeline(TimelineManager.TimelineManagerSin.timelineClips.ResetFromPause);
-        ResetGame();
     }
 
     public void Button_ResetFromEndMenu()
     {
-        TimelineManager.TimelineManagerSin.PlayTimeline(TimelineManager.TimelineManagerSin.timelineClips.ResetFromEndMenu);
+        if ( !TimelineManager.TimelineManagerSin.PlayTimeline(TimelineManager.TimelineManagerSin.timelineClips.ResetFromEndMenu) ) return;
         ResetGame();
     }
 
