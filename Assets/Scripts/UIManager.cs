@@ -19,16 +19,7 @@ public class UIManager : MonoBehaviour
 
     void Start()
     {
-        SetupUI();
-
         TimelineManager.TimelineManagerSin.PlayTimeline(TimelineManager.TimelineManagerSin.timelineClips.GameIntro);
-    }
-
-    void SetupUI()
-    {
-        Text_Score.text = 0.ToString();
-        Text_PauseMenuScore.text = 0.ToString();
-        Text_EndMenuScore.text = 0.ToString();
     }
 
     public void StartGame()

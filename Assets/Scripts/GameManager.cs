@@ -6,9 +6,10 @@ public class GameManager : MonoBehaviour
 {
     [HideInInspector] public static GameManager GameManagerSin;
     [SerializeField] MeteoriteSpawnManager meteoriteSpawnManager;
+    [SerializeField] GameObject Testing_InvisibleBarrierObj;
     [SerializeField] Transform BulletSpawnTrans, MeteoriteSpawnTrans;
 
-    [SerializeField] int Score = 0, BestScore = 0/*, Money=0*/;
+    public int Score = 0, BestScore = 0/*, Money=0*/;
 
     void Awake()
     {
@@ -20,7 +21,7 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        UIManager.UIManagerSin.UpdateUI(Score, BestScore);
     }
 
     Coroutine meteoriteSpawnCoroutine;
@@ -132,6 +133,9 @@ public class GameManager : MonoBehaviour
 
         UIManager.UIManagerSin.GameOver();
         UIManager.UIManagerSin.UpdateUI(Score, BestScore);
+
+        SaveNLoadManager.SaveNLoadManagerSin.SaveGameData(BestScore);
+
         Debug.Log("Earth Destroyed! Game Over");
 
         CameraManager.CameraManagerSin.Shake(ShakeDataTType.Hitted);
@@ -163,4 +167,13 @@ public class GameManager : MonoBehaviour
         Debug.Log("Game Stopped.");
         Application.Quit();
     }
+
+    public void Testing_InvisibleBarrierSwitch()
+    {
+        if (Testing_InvisibleBarrierObj.activeSelf) Testing_InvisibleBarrierObj.SetActive(false);
+        else Testing_InvisibleBarrierObj.SetActive(true);
+
+        Debug.Log("Testing object invisiblebarrier has been switched!");
+    }
+
 }

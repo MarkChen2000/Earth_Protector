@@ -78,5 +78,7 @@ public class InputManager : MonoBehaviour
 
             //Debug.Log("Mouse point in world space: " + position.x + " " + position.y);
         }
+
+        if (Input.GetKeyDown(KeyCode.Space)) GameManager.GameManagerSin.Testing_InvisibleBarrierSwitch();
     }
 }
