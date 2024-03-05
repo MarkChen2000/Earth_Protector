@@ -20,10 +20,6 @@ public class TurretController : MonoBehaviour
     [SerializeField] GameObject Bullet_Prefab, ShootingEffect_Prefab;
     [SerializeField] Transform Trans_GunSpot;
 
-    void Awake()
-    {
-        
-    }
 
     void Start()
     {
@@ -95,6 +91,8 @@ public class TurretController : MonoBehaviour
 
         Animator.SetTrigger("Fire");
         CameraManager.CameraManagerSin.Shake(ShakeDataTType.Shoot_SingleGun);
+
+        AudioManager.AudioManagerSin.PlaySoundEffect(SFX.Shoot, transform);
     }
 
 
