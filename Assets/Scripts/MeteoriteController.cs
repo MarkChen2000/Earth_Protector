@@ -95,6 +95,9 @@ public class MeteoriteController : MonoBehaviour
             GameManager.GameManagerSin.GainPoint(1);
 
             if (EffectPrefab != null) Instantiate(EffectPrefab, transform.position, Quaternion.identity);
+
+            AudioManager.AudioManagerSin.PlaySoundEffect(SFX.Meteor_Destroy, transform.root);
+
             Destroy(gameObject);
         }
         else HitPoint -= costHitPoint;

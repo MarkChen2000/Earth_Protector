@@ -22,9 +22,10 @@ public class UIManager : MonoBehaviour
         TimelineManager.TimelineManagerSin.PlayTimeline(TimelineManager.TimelineManagerSin.timelineClips.GameIntro);
     }
 
-    public void StartGame()
+    public bool StartGame()
     {
-        TimelineManager.TimelineManagerSin.PlayTimeline(TimelineManager.TimelineManagerSin.timelineClips.GameStart);
+        if (!TimelineManager.TimelineManagerSin.PlayTimeline(TimelineManager.TimelineManagerSin.timelineClips.GameStart)) return false;
+        return true;
         //StartMenu.SetActive(false);
     }
 

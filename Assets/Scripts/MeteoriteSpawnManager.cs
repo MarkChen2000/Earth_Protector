@@ -71,7 +71,7 @@ public class MeteoriteSpawnManager : MonoBehaviour
                 
                 currentSpawnInterval = Mathf.Lerp(MinSpawnInterval, currentMaxSpawnInterval, RandomOfIntervalCurve.Evaluate(Random.value) ); //以最大值與最小值做中間插值，讓曲線0~1的結果呈現
                 
-                Debug.Log("interval: " + currentSpawnInterval+", timer: "+ (Time.time-startTime)+" amount: "+amount);
+                // Debug.Log("interval: " + currentSpawnInterval+", timer: "+ (Time.time-startTime)+" amount: "+amount);
 
                 // 如果每次生成超過一顆 便分散平均在當次間隔時間內發射
                 if ( amount > 1 ) {

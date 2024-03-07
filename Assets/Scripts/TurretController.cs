@@ -92,7 +92,7 @@ public class TurretController : MonoBehaviour
         Animator.SetTrigger("Fire");
         CameraManager.CameraManagerSin.Shake(ShakeDataTType.Shoot_SingleGun);
 
-        AudioManager.AudioManagerSin.PlaySoundEffect(SFX.Shoot, transform);
+        AudioManager.AudioManagerSin.PlaySoundEffect(SFX.Gun_Shoot, transform);
     }
 
 

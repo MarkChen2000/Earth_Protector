@@ -22,16 +22,18 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         UIManager.UIManagerSin.UpdateUI(Score, BestScore);
+        AudioManager.AudioManagerSin.StartBGM(BGM_State.Menu);
     }
 
     Coroutine meteoriteSpawnCoroutine;
 
     public void Button_StartGame()
     {
-        InputManager.InputManagerSin.CanControl = true;
+        if (!UIManager.UIManagerSin.StartGame()) return;
 
-        UIManager.UIManagerSin.StartGame();
+        InputManager.InputManagerSin.CanControl = true;
         meteoriteSpawnCoroutine = StartCoroutine( meteoriteSpawnManager.StartSpawningMeteorites() );
+        AudioManager.AudioManagerSin.StartBGM(BGM_State.Game);
     }
 
     bool isSettingMenuEnable = false;
@@ -133,6 +135,9 @@ public class GameManager : MonoBehaviour
 
         UIManager.UIManagerSin.GameOver();
         UIManager.UIManagerSin.UpdateUI(Score, BestScore);
+
+        AudioManager.AudioManagerSin.StartBGM(BGM_State.GameOver);
+        AudioManager.AudioManagerSin.PlaySoundEffect(SFX.Earth_Destroy,transform);
 
         SaveNLoadManager.SaveNLoadManagerSin.SaveGameData(BestScore);
 
