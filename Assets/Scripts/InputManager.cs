@@ -50,8 +50,8 @@ public class InputManager : MonoBehaviour
             //Debug.Log("Touched point in screen space: " + touch.position.x + " " + touch.position.y);
 
             Vector2 position = Camera.main.ScreenToWorldPoint(touch.position);
-            _turretController.TurretMove(position);
-            _turretController.GunFire();
+            TurretController.TurretControllerSin.TurretMove(position);
+            TurretController.TurretControllerSin.GunFire();
 
             if ( GunSightIcon!=null ) {
                 GunSightIcon.SetActive(true);
@@ -67,8 +67,8 @@ public class InputManager : MonoBehaviour
             //Debug.Log("Mouse point in screen space: " + Input.mousePosition.x + " " + Input.mousePosition.y);
 
             Vector2 position = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            _turretController.TurretMove(position);
-            _turretController.GunFire();
+            TurretController.TurretControllerSin.TurretMove(position);
+            TurretController.TurretControllerSin.GunFire();
 
             if (GunSightIcon != null)
             {

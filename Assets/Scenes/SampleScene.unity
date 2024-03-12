@@ -1969,6 +1969,7 @@ GameObject:
   - component: {fileID: 381421877}
   - component: {fileID: 381421876}
   - component: {fileID: 381421875}
+  - component: {fileID: 381421878}
   m_Layer: 5
   m_Name: Canvas_InGameUI
   m_TagString: Untagged
@@ -2060,6 +2061,27 @@ Canvas:
   m_SortingLayerID: 1644642211
   m_SortingOrder: 0
   m_TargetDisplay: 0
+--- !u!95 &381421878
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 381421873}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 4649cc91329f1f74f8c119a7331d2368, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &417674951
 GameObject:
   m_ObjectHideFlags: 0
@@ -3948,7 +3970,7 @@ PlayableDirector:
   m_GameObject: {fileID: 883504295}
   m_Enabled: 1
   serializedVersion: 3
-  m_PlayableAsset: {fileID: 11400000, guid: ac11c5b8c72a5f8488b6e207a8242296, type: 2}
+  m_PlayableAsset: {fileID: 11400000, guid: 1b8572841ba0cc74a86f72a9b9588793, type: 2}
   m_InitialState: 0
   m_WrapMode: 2
   m_DirectorUpdateMode: 2
@@ -4014,6 +4036,10 @@ PlayableDirector:
     value: {fileID: 1375486056}
   - key: {fileID: -2451880675802440232, guid: ac11c5b8c72a5f8488b6e207a8242296, type: 2}
     value: {fileID: 29269728}
+  - key: {fileID: 8644152634855161303, guid: 3e68a755eb1e3f24da05a1f09f060e96, type: 2}
+    value: {fileID: 381421878}
+  - key: {fileID: 7386700224106943745, guid: 1b8572841ba0cc74a86f72a9b9588793, type: 2}
+    value: {fileID: 381421878}
   m_ExposedReferences:
     m_References: []
 --- !u!4 &883504297
@@ -6000,6 +6026,8 @@ MonoBehaviour:
     - {fileID: 11400000, guid: 1ff2075c14fc3e04d9527dd8f50e4b8b, type: 2}
     - {fileID: 11400000, guid: a19f760d8b58c094a980a22a7a87cc84, type: 2}
     - {fileID: 11400000, guid: baab9f295a3032b458c6f4610897c828, type: 2}
+    - {fileID: 11400000, guid: 1eab9fc5c888d5a4b9afd91328435ee2, type: 2}
+    - {fileID: 11400000, guid: ecb4b2eb652c51340bc23254903300b9, type: 2}
     m_Events:
     - m_PersistentCalls:
         m_Calls:
@@ -6034,6 +6062,34 @@ MonoBehaviour:
         - m_Target: {fileID: 1375486055}
           m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
           m_MethodName: Signal_ResumeTimeScale
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+    - m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1375486055}
+          m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
+          m_MethodName: Signal_StartMainMenuBGM
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+    - m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1375486055}
+          m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
+          m_MethodName: Signal_ResetGunPos
           m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
@@ -6676,16 +6732,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   BGMAudioSource: {fileID: 1506426185}
   AudioSourcePrefab: {fileID: 6485020594495101205, guid: fbd616f7677572843bc6ed3525d6b8ee, type: 3}
-  BGM_MainMenu: {fileID: 0}
-  BGM_Game: {fileID: 0}
-  BGM_GameOver: {fileID: 0}
+  BGM_MainMenu: {fileID: 8300000, guid: 250ca0b0d293e8248935093b68687234, type: 3}
+  BGM_Game: {fileID: 8300000, guid: 0674f8eda833cc749831a913f70863cc, type: 3}
+  BGM_GameOver: {fileID: 8300000, guid: ccbb61a245a90564a863976e480ad636, type: 3}
   SFX_Gun_Shoot:
   - {fileID: 8300000, guid: ff2beb62e21ecc64dbf5148f234acbcf, type: 3}
   SFX_Meteor_Destroy:
   - {fileID: 8300000, guid: 30bf909c93414d24193fc9f4c032bfe7, type: 3}
   SFX_Earth_Destroy:
   - {fileID: 8300000, guid: 17655d73bc6335244ba2bd132036f2f4, type: 3}
-  SFX_Select: []
+  SFX_Select:
+  - {fileID: 8300000, guid: 7b9195495fbc3544f96f30fa0581d162, type: 3}
 --- !u!4 &1506426183
 Transform:
   m_ObjectHideFlags: 0
@@ -7873,6 +7930,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 1506426182}
+        m_TargetAssemblyTypeName: AudioManager, Assembly-CSharp
+        m_MethodName: Button_PlaySoundEffect
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 8300000, guid: 7b9195495fbc3544f96f30fa0581d162, type: 3}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.AudioClip, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1796645356
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8264,13 +8333,14 @@ GameObject:
   - component: {fileID: 1920702414}
   - component: {fileID: 1920702413}
   - component: {fileID: 1920702412}
+  - component: {fileID: 1920702415}
   m_Layer: 5
   m_Name: Button_Pause
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1920702411
 RectTransform:
   m_ObjectHideFlags: 0
@@ -8386,6 +8456,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1920702410}
   m_CullTransparentMesh: 1
+--- !u!225 &1920702415
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1920702410}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!1 &1991898660
 GameObject:
   m_ObjectHideFlags: 0

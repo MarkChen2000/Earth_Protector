@@ -162,6 +162,16 @@ public class GameManager : MonoBehaviour
         Debug.Log("Clear Meteor!");
     }
 
+    public void Signal_StartMainMenuBGM()
+    {
+        AudioManager.AudioManagerSin.StartBGM(BGM_State.Menu);
+    }
+
+    public void Signal_ResetGunPos()
+    {
+        TurretController.TurretControllerSin.ResetGunPos();
+    }
+
     void ResetGame()
     {
         Score = 0;

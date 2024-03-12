@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class TurretController : MonoBehaviour
 {
-    
+    [HideInInspector] public static TurretController TurretControllerSin; 
+
     enum TurretTurnMode
     {
         Immediately, Speed
@@ -20,6 +21,12 @@ public class TurretController : MonoBehaviour
     [SerializeField] GameObject Bullet_Prefab, ShootingEffect_Prefab;
     [SerializeField] Transform Trans_GunSpot;
 
+    void Awake()
+    {
+        //Singleton
+        if (TurretControllerSin != null && TurretControllerSin != this) Destroy(this);
+        else TurretControllerSin = this;
+    }
 
     void Start()
     {
@@ -95,5 +102,9 @@ public class TurretController : MonoBehaviour
         AudioManager.AudioManagerSin.PlaySoundEffect(SFX.Gun_Shoot, transform);
     }
 
+    public void ResetGunPos()
+    {
+        TurretMove( Vector2.up );
+    }
 
 }

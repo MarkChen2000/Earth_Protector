@@ -81,6 +81,15 @@ public class AudioManager : MonoBehaviour
         Destroy(audioSource.gameObject, audioSource.clip.length);
     }
 
+    public void Button_PlaySoundEffect(AudioClip clip)
+    {
+        audioSource = Instantiate(AudioSourcePrefab, Vector3.zero, Quaternion.identity, transform);
+        audioSource.clip = clip;
+        audioSource.volume = 1f;
+        audioSource.Play();
+        Destroy(audioSource.gameObject, audioSource.clip.length);
+    }
+
     AudioClip CheckAndPlayClip(AudioClip[] clips)
     {
         if (clips.Length == 0) {
