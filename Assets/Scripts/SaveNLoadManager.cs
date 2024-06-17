@@ -46,7 +46,7 @@ public class SaveNLoadManager : MonoBehaviour
     void Testing_ClearGameData()
     {
         PlayerPrefs.DeleteAll();
-        Debug.Log("Warning! All the game data gave been deleted!!");
+        Debug.Log("Warning! All the game data have been deleted!!");
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 }

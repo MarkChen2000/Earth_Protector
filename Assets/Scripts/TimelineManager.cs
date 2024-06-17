@@ -12,7 +12,7 @@ public class TimelineManager : MonoBehaviour
     [SerializeField] PlayableDirector Director;
     [Serializable] public struct TimelineClips
     {
-        public PlayableAsset GameIntro, GameStart, GameOver, ResetFromEndMenu, ResetFromPause, InPause, OutPause, InSetting, OutSetting;
+        public PlayableAsset GameIntro, GameStart, GameOver, ResetFromEndMenu, ResetFromPause, InPause, OutPause, InSetting, OutSetting, InCredit, OutCredit;
     }
     public TimelineClips timelineClips;
 

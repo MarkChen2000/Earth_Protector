@@ -67,7 +67,7 @@ public class GameManager : MonoBehaviour
 
             if (!TimelineManager.TimelineManagerSin.PlayTimeline(TimelineManager.TimelineManagerSin.timelineClips.InPause)) return;
 
-            InputManager.InputManagerSin.CanControl = false;
+            //InputManager.InputManagerSin.CanControl = false; // currently blocked the screen by raycast blocker so no need to use this to prevent mistouch.
             Time.timeScale = 0f;
             isGamePause = true;
 
@@ -84,14 +84,15 @@ public class GameManager : MonoBehaviour
             
             if (!TimelineManager.TimelineManagerSin.PlayTimeline(TimelineManager.TimelineManagerSin.timelineClips.OutPause)) return;
 
-            InputManager.InputManagerSin.CanControl = true;
-            Time.timeScale = 1f;
-            isGamePause = false;
+            //InputManager.InputManagerSin.CanControl = true;
+            
+            /*Time.timeScale = 1f;
+            isGamePause = false;*/ //using signal_resumetimescale to prevent error while the timeline still playing but earth be destried.
 
             isPauseMenuEnable = false;
         }
         else {
-            Debug.Log("Warining! Pause menu was not be opened.");
+            Debug.Log("Warining! Pause menu was not be closed.");
         }
     }
 
@@ -103,6 +104,8 @@ public class GameManager : MonoBehaviour
 
     public void Signal_ResumeTimeScale()
     {
+        Debug.Log("Resume time scale");
+
         if (isGamePause) {
             Time.timeScale = 1f;
             isGamePause = false;
@@ -116,6 +119,24 @@ public class GameManager : MonoBehaviour
     {
         if ( !TimelineManager.TimelineManagerSin.PlayTimeline(TimelineManager.TimelineManagerSin.timelineClips.ResetFromEndMenu) ) return;
         ResetGame();
+    }
+
+    public void Button_EnterCreditMenu()
+    {
+        if (!TimelineManager.TimelineManagerSin.PlayTimeline(TimelineManager.TimelineManagerSin.timelineClips.InCredit)) return;
+        else
+        {
+            Debug.Log("Warining! Credit menu was not be opened.");
+        }
+    }
+
+    public void Button_ExitCreditMenu()
+    {
+        if (!TimelineManager.TimelineManagerSin.PlayTimeline(TimelineManager.TimelineManagerSin.timelineClips.OutCredit)) return;
+        else
+        {
+            Debug.Log("Warining! Credit menu was not be closed.");
+        }
     }
 
 
@@ -190,5 +211,11 @@ public class GameManager : MonoBehaviour
 
         Debug.Log("Testing object invisiblebarrier has been switched!");
     }
+
+    public void Button_OpenURLKENKEN()
+    {
+        Application.OpenURL("https://kenkenbgm.blogspot.com/");
+    }
+
 
 }

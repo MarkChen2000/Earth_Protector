@@ -16,7 +16,7 @@ public class AudioMixerManager : MonoBehaviour
     public void SetBGMVolume(bool enable)
     {
         if (enable == false) _AudioMixer.SetFloat("BGMVolume", -80f);
-        else  _AudioMixer.SetFloat("BGMVolume", 0f);
+        else  _AudioMixer.SetFloat("BGMVolume", -10f);
     }
 
     public void SetSFXVolume(bool enable)
