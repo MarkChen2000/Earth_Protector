@@ -150,6 +150,8 @@ public class GameManager : MonoBehaviour
     {
         InputManager.InputManagerSin.CanControl = false;
 
+        EarthBehaviour.EarthBehaviourSin.EarthBeDestroyed();
+
         ClearBullets();
 
         if (Score > BestScore) BestScore = Score;
