@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.UIElements;
 
 public class InputManager : MonoBehaviour
 {
@@ -31,6 +32,15 @@ public class InputManager : MonoBehaviour
 
     void Update()
     {
+        //for debug.
+        /*if (Input.touchCount > 0)
+        {
+            Touch _touch = Input.GetTouch(0);
+            Debug.Log("Touched point in screen space: " + _touch.position.x + " " + _touch.position.y);
+            Vector2 _position = Camera.main.ScreenToWorldPoint(_touch.position);
+            Debug.Log("Touched point transfer into world space: "+ _position.x + " " + _position.y);
+        }*/
+
         if (GunSightIcon != null) GunSightIcon.SetActive(false);
 
         if (!CanControl) return;
@@ -50,6 +60,9 @@ public class InputManager : MonoBehaviour
             //Debug.Log("Touched point in screen space: " + touch.position.x + " " + touch.position.y);
 
             Vector2 position = Camera.main.ScreenToWorldPoint(touch.position);
+
+            //Debug.Log("Touched point transfer to world space: " + position.x + " " + position.y);
+
             TurretController.TurretControllerSin.TurretMove(position);
             TurretController.TurretControllerSin.GunFire();
 
@@ -57,7 +70,6 @@ public class InputManager : MonoBehaviour
                 GunSightIcon.SetActive(true);
                 GunSightIcon.transform.position = position;
             }
-            //Debug.Log("Touched point in world space: "+position.x + " " + position.y);
         }
 
         if (Input.GetMouseButton(0)) {
