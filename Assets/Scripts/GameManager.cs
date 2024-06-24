@@ -67,7 +67,10 @@ public class GameManager : MonoBehaviour
 
             if (!TimelineManager.TimelineManagerSin.PlayTimeline(TimelineManager.TimelineManagerSin.timelineClips.InPause)) return;
 
-            //InputManager.InputManagerSin.CanControl = false; // currently blocked the screen by raycast blocker so no need to use this to prevent mistouch.
+            InputManager.InputManagerSin.CanControl = false; 
+            // Although currently block the screen by raycast blocker but also need to prevent mistouch using script.
+            
+
             Time.timeScale = 0f;
             isGamePause = true;
 
@@ -84,7 +87,7 @@ public class GameManager : MonoBehaviour
             
             if (!TimelineManager.TimelineManagerSin.PlayTimeline(TimelineManager.TimelineManagerSin.timelineClips.OutPause)) return;
 
-            //InputManager.InputManagerSin.CanControl = true;
+            InputManager.InputManagerSin.CanControl = true;
             
             /*Time.timeScale = 1f;
             isGamePause = false;*/ //using signal_resumetimescale to prevent error while the timeline still playing but earth be destried.

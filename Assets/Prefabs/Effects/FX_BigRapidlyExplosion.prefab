@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 5977042287069856337}
   - component: {fileID: 5517300671390772184}
   - component: {fileID: 5382543531220794079}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: FX_BigExplosion
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -132,7 +132,7 @@ GameObject:
   - component: {fileID: 6190075841368297170}
   - component: {fileID: 2518672632362237721}
   - component: {fileID: 5545466576086956458}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: FX_BigExplosion_2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -249,7 +249,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1967835574231978635}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: FX_BigRapidlyExplosion
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -286,7 +286,7 @@ GameObject:
   - component: {fileID: 6903734615593716275}
   - component: {fileID: 4485709412728818993}
   - component: {fileID: 7441464303677780754}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: FX_BigExplosion_3
   m_TagString: Untagged
   m_Icon: {fileID: 0}

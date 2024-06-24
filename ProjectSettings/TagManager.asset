@@ -15,7 +15,7 @@ TagManager:
   - 
   - Water
   - UI
-  - Pixelate Filter
+  - Pixelate Object
   - 
   - 
   - 
@@ -48,9 +48,9 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: Pixelate GameObjects
+    uniqueID: 2814102981
+    locked: 0
   - name: UI
     uniqueID: 1644642211
-    locked: 0
-  - name: PixelateFliter
-    uniqueID: 2814102981
     locked: 0

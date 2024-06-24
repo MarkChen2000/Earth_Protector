@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3086156257194302714}
   - component: {fileID: 4369815527445761653}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: TrailCreator
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -162,7 +162,7 @@ GameObject:
   - component: {fileID: 6059738546749394072}
   - component: {fileID: 4181799047452145916}
   - component: {fileID: 536325246454311122}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Meteorite3
   m_TagString: Meteorite
   m_Icon: {fileID: 0}
