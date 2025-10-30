@@ -16,23 +16,8 @@ public class UIManager : MonoBehaviour
         if (UIManagerSin != null && UIManagerSin != this) Destroy(this);
         else UIManagerSin = this;
     }
-
     void Start()
     {
-        TimelineManager.TimelineManagerSin.PlayTimeline(TimelineManager.TimelineManagerSin.timelineClips.GameIntro);
-    }
-
-    public bool StartGame()
-    {
-        if (!TimelineManager.TimelineManagerSin.PlayTimeline(TimelineManager.TimelineManagerSin.timelineClips.GameStart)) return false;
-        return true;
-        //StartMenu.SetActive(false);
-    }
-
-    public void GameOver()
-    {
-        TimelineManager.TimelineManagerSin.PlayTimeline(TimelineManager.TimelineManagerSin.timelineClips.GameOver);
-        //EndMenu.SetActive(true);
     }
 
     public void Signal_ResetUI()

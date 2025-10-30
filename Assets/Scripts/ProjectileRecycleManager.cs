@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MeteoriteRecycleManager : MonoBehaviour
+public class ProjectileRecycleManager : MonoBehaviour
 {
 
     void OnTriggerExit2D(Collider2D collision)

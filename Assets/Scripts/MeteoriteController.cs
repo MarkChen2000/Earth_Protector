@@ -107,13 +107,11 @@ public class MeteoriteController : MonoBehaviour
     {
         if ( collision.transform.tag == "Earth") {
             GameManager.GameManagerSin.GameOver();
-
-            if (EffectPrefab != null) Instantiate(EffectPrefab, transform.position, Quaternion.identity);
+            
             Destroy(gameObject);
         }
 
         if ( collision.transform.tag == "Barrier") {
-            if (EffectPrefab != null) Instantiate(EffectPrefab, transform.position, Quaternion.identity);
             Destroy(gameObject);
         }
 
@@ -132,12 +130,13 @@ public class MeteoriteController : MonoBehaviour
 
     void OnDestroy()
     {
+        if (EffectPrefab != null) Instantiate(EffectPrefab, transform.position, Quaternion.identity);
+
         if (isQutting) return; // Because unparent trail creator in OnDestroy will make the trail creator not be cleaned when scene closes or changes. 
 
         TrailRenderer.transform.parent = null;
         TrailRenderer.autodestruct = true;
         TrailRenderer = null;
-        
     }
 
 }

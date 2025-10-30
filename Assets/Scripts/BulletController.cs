@@ -26,10 +26,13 @@ public class BulletController : MonoBehaviour
             MeteoriteController mCon = collision.transform.GetComponent<MeteoriteController>();
             mCon.HitbyBullet(1);
 
-            if (EffectPrefab != null) Instantiate(EffectPrefab, transform.position, Quaternion.identity);
-
             Destroy(gameObject);
         }
+    }
+
+    private void OnDestroy()
+    {
+        if (EffectPrefab != null) Instantiate(EffectPrefab, transform.position, Quaternion.identity);
     }
 
 }

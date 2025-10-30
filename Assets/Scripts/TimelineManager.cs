@@ -23,20 +23,9 @@ public class TimelineManager : MonoBehaviour
         else TimelineManagerSin = this;
     }
 
-    bool TryPlayTimeline()
-    {
-        if (Director.state == PlayState.Playing)
-        {
-            Debug.Log("The timelineclip is still playing.");
-            return false;
-        }
-
-        return true;
-    }
-
     public bool PlayTimeline(PlayableAsset clip)
     {
-        if (!TryPlayTimeline()) {
+        if (Director.state == PlayState.Playing) {
             return false;
         }
 

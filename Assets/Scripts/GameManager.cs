@@ -23,13 +23,15 @@ public class GameManager : MonoBehaviour
     {
         UIManager.UIManagerSin.UpdateUI(Score, BestScore);
         AudioManager.AudioManagerSin.StartBGM(BGM_State.Menu);
+
+        if (!TimelineManager.TimelineManagerSin.PlayTimeline(TimelineManager.TimelineManagerSin.timelineClips.GameIntro) ) return;
     }
 
     Coroutine meteoriteSpawnCoroutine;
 
     public void Button_StartGame()
     {
-        if (!UIManager.UIManagerSin.StartGame()) return;
+        TimelineManager.TimelineManagerSin.PlayTimeline(TimelineManager.TimelineManagerSin.timelineClips.GameStart);
 
         InputManager.InputManagerSin.CanControl = true;
         meteoriteSpawnCoroutine = StartCoroutine( meteoriteSpawnManager.StartSpawningMeteorites() );
@@ -151,6 +153,8 @@ public class GameManager : MonoBehaviour
 
     public void GameOver()
     {
+        if ( !TimelineManager.TimelineManagerSin.PlayTimeline(TimelineManager.TimelineManagerSin.timelineClips.GameOver) ) return;
+
         InputManager.InputManagerSin.CanControl = false;
 
         EarthBehaviour.EarthBehaviourSin.EarthBeDestroyed();
@@ -159,7 +163,6 @@ public class GameManager : MonoBehaviour
 
         if (Score > BestScore) BestScore = Score;
 
-        UIManager.UIManagerSin.GameOver();
         UIManager.UIManagerSin.UpdateUI(Score, BestScore);
 
         AudioManager.AudioManagerSin.StartBGM(BGM_State.GameOver);
@@ -167,9 +170,9 @@ public class GameManager : MonoBehaviour
 
         SaveNLoadManager.SaveNLoadManagerSin.SaveGameData(BestScore);
 
-        Debug.Log("Earth Destroyed! Game Over");
-
         CameraManager.CameraManagerSin.Shake(ShakeDataTType.Hitted);
+
+        Debug.Log("Earth Destroyed! Game Over");
     }
 
     void ClearBullets()
