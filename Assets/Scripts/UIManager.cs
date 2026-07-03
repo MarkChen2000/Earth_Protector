@@ -8,7 +8,7 @@ public class UIManager : MonoBehaviour
     [HideInInspector] public static UIManager UIManagerSin;
 
     [SerializeField] GameObject StartMenu, EndMenu;
-    [SerializeField] TMP_Text Text_Score, Text_EndMenuScore, Text_EndMenuBsetScore, Text_PauseMenuScore;
+    [SerializeField] TMP_Text Text_Score, Text_BestScore, Text_EndMenuScore, Text_EndMenuBsetScore, Text_PauseMenuScore;
 
     void Awake()
     {
@@ -30,6 +30,7 @@ public class UIManager : MonoBehaviour
     public void UpdateUI(int score, int bestScore)
     {
         Text_Score.text = score.ToString();
+        Text_BestScore.text = "Best Score: " + bestScore.ToString();
         Text_PauseMenuScore.text = score.ToString();
         Text_EndMenuScore.text = score.ToString();
         Text_EndMenuBsetScore.text = bestScore.ToString();
